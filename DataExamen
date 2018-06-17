@@ -1,0 +1,6 @@
+NOMBRE	APELLIDO	CORREO	CLAVE	MENSAJE ESPERADO
+admin	clave	admin@gmail.com	abc	Se guardó de manera correcta el Cliente
+admin2	clave2	admin2@gmail.com	abc	Se guardó de manera correcta el Cliente
+admin3	clave3	admin3@gmail.com	abc	Se guardó de manera correcta el Cliente
+admin2	clave2	admin2@gmail.com	abc	Ya existe un Cliente con el mismo correo
+admin3	clave3	abcdefg	abc	Formato de correo no valido
