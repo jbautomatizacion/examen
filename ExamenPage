@@ -1,0 +1,88 @@
+package pe.com.test.seleniumwd.page;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.Select;
+
+import pe.com.test.seleniumwd.driver.VisorDriver;
+
+public class ExamenPage {
+
+	//private By linkMenu = By.xpath("/html/body/section/div[1]/div");
+	//private By linkModAlmacen = By.xpath("/html/body/section/div[1]/nav/ul/li/span");
+	//private By tablaProductos1 = By.id("tablaProductos_data");
+	//private By tablaProductos = By.xpath("//*[@id='tablaProductos_data']/tr[1]/td[2]");
+	//private By tablaVacia = By.xpath("//*[@id='tablaProductos_data']/tr/td");
+	//private By cajaPrecio = By.id("txtPrecio");
+	private By linkRegistro = By.xpath("//*[@id='frmLogin']/div[3]/a");
+	private By textoNombre = By.id("txtNombre");
+	private By textoApellido = By.id("txtApellido");
+	private By textoCorreo = By.id("txtCorreo");
+	private By textoClave = By.id("txtClave");
+	private By botonGuardar = By.id("btnGuardar");
+	private By inicio = By.xpath("//*[@id='panel02']/tbody/tr[6]/td[3]/a");
+	private By elegirProducto = By.id("cboProducto_label");
+	private By cantidadSolicitar = By.id("spCantidad_input");
+	private By botonMas = By.id("j_idt25");
+	private By botonGuardar2 = By.id("j_idt41");
+	private By mensajeRespuesta = By.id("messages");
+	
+	
+	
+	private WebDriver webDriver = null;
+	//private Select select = null;
+	private WebDriverWait webDriverWait= null;
+	
+	public ExamenPage(WebDriver webDriver) {
+		this.webDriver = webDriver;
+		this.webDriverWait =new WebDriverWait(this.webDriver, 100, 500);//espera explicita consume menos memoria
+	}
+	
+	public String insertar(String nombre, String apellido, String correo, String clave) throws Exception {
+		//TODO
+		
+		this.webDriver.get("http://localhost:8082/TPidoWeb/registrarUsuario.xhtml");
+		//this.webDriver.findElement(linkRegistro).click();
+		this.webDriver.findElement(textoNombre).sendKeys(nombre);
+		this.webDriver.findElement(textoApellido).sendKeys(apellido);
+		this.webDriver.findElement(textoCorreo).sendKeys(correo);
+		this.webDriver.findElement(textoClave).sendKeys(clave);
+		this.webDriver.findElement(botonGuardar).click();
+		//this.webDriver.findElement(inicio).click();
+		//Select cat = new Select(this.webDriver.findElement(cajaCategoria));
+		//cat.selectByVisibleText(categoria); //para tipo string, si fuera numero poner selectbyindex
+		//puede reemplazar a cada findEelement mensajeRespuesta
+		return webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(mensajeRespuesta)).getText();//encontrar el elemento en el tiempo de respuesta definido
+		//return webDriver.findElement(mensajeRespuesta).getText();	
+	}	
+	
+	public String insertar2(String producto, String cantidad) throws Exception {
+		//TODO
+		Thread.sleep(2000);
+		this.webDriver.get("http://localhost:8082/TPidoWeb/registrarCliePedido.xhtml");
+		//this.webDriver.findElement(linkRegistro).click();
+		//Select cat = new Select(this.webDriver.findElement(elegirProducto));
+		//cat.selectByVisibleText(producto);//para tipo string, si fuera numero poner selectbyindex
+		this.webDriver.findElement(elegirProducto).sendKeys(producto);
+		this.webDriver.findElement(cantidadSolicitar).sendKeys(cantidad);
+		this.webDriver.findElement(botonMas).click();
+		Thread.sleep(2000);
+		this.webDriver.findElement(botonGuardar2).click();
+		//this.webDriver.findElement(inicio).click();
+
+		//puede reemplazar a cada findEelement mensajeRespuesta
+		return webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(mensajeRespuesta)).getText();//encontrar el elemento en el tiempo de respuesta definido
+		//return webDriver.findElement(mensajeRespuesta).getText();	
+	}
+	
+	public void cerrarPagina(){
+		VisorDriver.cerrarPagina(webDriver);
+	}
+	
+	public WebDriver getWebDriver() {
+		return webDriver;
+	}
+
+}
