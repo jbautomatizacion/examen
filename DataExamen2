@@ -1,0 +1,4 @@
+CORREO	clave	PRODUCTO	CANTIDADSOLICITAR	MENSAJERESPUESTA
+admin@gmail.com	abc	COCA COLA 	5	Se guardó de manera correcta el Pedido con ID : 1
+admin2@gmail.com	abc	FRESA AMBROSOLI 	10	Se guardó de manera correcta el Pedido con ID : 2
+admin3@gmail.com	abc	INCA COLA 	20	Se guardó de manera correcta el Pedido con ID : 3
